@@ -7,7 +7,9 @@ tar -xf  finalDataPackage.tar -C ./tmpFolder
 cd tmpFolder
 
 checksum=$(head -n1 sha256Recordings.txt)
+ipAddress=$(tail -n1 sha256Recordings.txt)
 echo $checksum
+echo $ipAddress
 
 archiveChecksum=$(sha256sum recordings.tar | awk '{print $1}')
 echo $archiveChecksum
@@ -15,11 +17,13 @@ echo $archiveChecksum
 if [ "$checksum" = "$archiveChecksum" ];
 then
 	echo "great!" > dataTransferMessage.txt
-	rsync -au dataTransferMessage.txt practiceubuntu@[IP address]:~/Documents
 else
 	echo "mismatch! resend data" > dataTransferMessage.txt
-	rsync -au dataTransferMessage.txt practiceubuntu@[IP address]:~/Documents
 fi
+
+
+rsyncCommand="rsync -au dataTransferMessage.txt practiceubuntu@$ipAddress:~/Documents"
+eval $rsyncCommand
 
 
 cd ..

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-./test.sh
+./fromCarToPanda.sh
 
 while true
 do
@@ -12,9 +12,10 @@ do
 			echo message has been sent
 			break
 		else 
-			./test.sh
+			./fromCarToPanda.sh
 		fi
 	fi
+	sleep 1
 done
 
 rm -rf ./recordings/filesToBeSent/

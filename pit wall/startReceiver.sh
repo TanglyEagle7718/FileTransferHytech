@@ -12,15 +12,16 @@ do
 		then
 			continue;	
 		else
-			break;
+						
+			tar -xf recordings.tar -C ../lastRunRecordings/
+
+			mv ../lastRunRecordings/recordings/filesToBeSent/* ../lastRunRecordings
+
+			cd ~/carData
+			rm -rf tmpFolder
+			rm finalDataPackage.tar
 		fi	
-		break
 	fi	
+
+	sleep 1
 done
-tar -xf recordings.tar -C ../lastRunRecordings/
-
-mv ../lastRunRecordings/recordings/filesToBeSent/* ../lastRunRecordings
-
-cd ~/carData
-rm -rf tmpFolder
-rm finalDataPackage.tar
